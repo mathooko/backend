@@ -10,9 +10,9 @@ class Department(models.Model):
 class Doctor(models.Model):
     FirstName = models.CharField(max_length=50)
     LastName = models.CharField(max_length=50)
-    email = models.EmailField(max_length=50)
+    email = models.EmailField(max_length=50,unique=True)
     PhoneNumber = models.IntegerField()
-    StaffID = models.CharField(max_length=15)
+    StaffID = models.CharField(max_length=15,unique=True)
     Department = models.ForeignKey(Department, on_delete=models.CASCADE)
 
     def __str__(self):
