@@ -25,14 +25,10 @@ class CustomerSerializer(serializers.ModelSerializer):
        
         
 class LaundryServiceSerializer(serializers.ModelSerializer):
-    dry_cleaning = serializers.BooleanField(required=False)
-    dry_cleaning_and_ironing = serializers.BooleanField(required=False)
-    house_cleaning = serializers.BooleanField(required=False)
-    shoe_laundry = serializers.BooleanField(required=False)
+        class Meta:
+             model = LaundryService 
+             fields = "__all__"
 
-    class Meta:
-        model = LaundryService
-        fields = ['id', 'dry_cleaning', 'dry_cleaning_and_ironing', 'house_cleaning', 'shoe_laundry']
-
-    def create(self, validated_data):
-        return LaundryService.objects.create(**validated_data)
+        def to_representation(self, instance):
+            data = super().to_representation(instance)
+            return {key: value for key, value in data.items() if value is not None}

@@ -33,17 +33,6 @@ class LaundryServiceView(generics.ListCreateAPIView):
     queryset = LaundryService.objects.all()
     serializer_class = LaundryServiceSerializer
 
-    def create(self, request, *args, **kwargs):
-        data = request.data.copy()
-        services = []
-        for field_name in ['dry_cleaning', 'dry_cleaning_and_ironing', 'house_cleaning', 'shoe_laundry']:
-            if field_name in data:
-                if data[field_name]:
-                    services.append(field_name.replace('_', ' '))
-                del data[field_name]
-        data['service'] = ', '.join(services)
-        serializer = self.get_serializer(data=data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=201, headers=headers)
+class SelectedView(generics.RetrieveAPIView):
+    queryset = LaundryService.objects.all()
+    serializer_class = LaundryServiceSerializer
