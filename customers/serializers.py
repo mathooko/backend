@@ -12,7 +12,7 @@ class CustomerSerializer(serializers.ModelSerializer):
         """Meta class for CustomerSerializer."""
 
         model = User
-        fields=["username","email","password"]
+        fields=["id","username","email","password"]
     
     def create(self, validated_data):
         """Create a new user."""
