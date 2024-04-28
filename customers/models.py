@@ -11,7 +11,8 @@ class LaundryService(models.Model):
    personal = models.IntegerField(null=True)
    duvet = models.IntegerField(null=True)
    shoes = models.IntegerField(null=True)
-   price = models.FloatField(null=True)
+   iron = models.BooleanField(default=False)
+
    
    def __str__(self):
         return f"LaundryService ID: {self.id}"

@@ -25,10 +25,9 @@ class CustomerSerializer(serializers.ModelSerializer):
        
         
 class LaundryServiceSerializer(serializers.ModelSerializer):
-        class Meta:
-             model = LaundryService 
-             fields = "__all__"
+    """Laundry service serializer."""
 
-        def to_representation(self, instance):
-            data = super().to_representation(instance)
-            return {key: value for key, value in data.items() if value is not None}
+    class Meta:
+        """Meta class for LaundryServiceSerializer."""
+        model= LaundryService
+        fields = ["id","user","trousers","tshirts","sweaters","shorts","personal","duvet","shoes","iron"]
